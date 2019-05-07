@@ -12,11 +12,19 @@ import signal
 import sys
 import requests
 
+def getMAC(interface='wlan0'):
+  #Return the MAC addres of the specified interface
+  try:
+    str = open('/sys/class/net/%s/address' %interface).read()
+  except:
+    str = "00:00:00:00:00:00" 
+  print (str)
+  return str[0:17]
 
 def SerialAC():
   # Abrimos el puerto del arduino a 9600
   PuertoSerie = serial.Serial('/dev/ttyUSB0', 115200)
-  idPi = "Pi001"
+  idPi = getMAC('wlan0')
   data = []
   counter = 0
   while True:

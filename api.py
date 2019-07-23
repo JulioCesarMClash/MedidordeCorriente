@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 #mongodb://www.labmovilidad.unam.mx:27017
 #mongodb://localhost:27017/
 try:
-	client = MongoClient('mongodb://localhost:27017/', maxPoolSize=50)
+	client = MongoClient('mongodb://www.labmovilidad.unam.mx:27017', maxPoolSize=50)
 	mydb = client['Raspi']
 
 except:

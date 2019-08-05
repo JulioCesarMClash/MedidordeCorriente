@@ -1,4 +1,5 @@
 import flask, sys, json, datetime
+from flask_cors import CORS
 from flask import request, jsonify
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
@@ -7,6 +8,7 @@ from pymongo import MongoClient
 
 
 app = flask.Flask(__name__)
+CORS(app)
 #mongodb://www.labmovilidad.unam.mx:27017
 #mongodb://localhost:27017/
 try:
@@ -22,10 +24,10 @@ app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
 def home():
-	return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
+	return "<h1>API is online :)</h1><p>The API is up and run...</p>"
 
 
-@app.route('/api/v1/data', methods=['POST'])
+@app.route('/api/test/data', methods=['POST'])
 def api_in():
 	try:
 		content = request.get_json(silent=True)

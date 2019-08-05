@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sensor de Consumo</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome 
+  <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
+<!-- Ionicons -->
+<link rel="stylesheet" href="./bower_components/Ionicons/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="./dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  	folder instead of downloading all of them to reduce the load. -->
+  	<link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
+
+  	<!-- Google Font -->
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
+
+  <body class="hold-transition skin-green-light ">
+
+  	<div class="wrapper">
+
+  		<header class="main-header">
+  			<!-- Logo -->
+  			<a href="./index2.html" class="logo">
+  				<!-- mini logo for sidebar mini 50x50 pixels -->
+  				<span class="logo-mini"><b>A</b>LT</span>
+  				<!-- logo for regular state and mobile devices -->
+  				<span class="logo-lg"><b>Tester</b>LTE</span>
+  			</a>
+  			<!-- Header Navbar: style can be found in header.less -->
+  			<nav class="navbar navbar-static-top">
+  				<!-- Sidebar toggle button-->
+  				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+  					<span class="sr-only">Toggle navigation</span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</a>
+
+  				<div class="navbar-custom-menu">
+  					<ul class="nav navbar-nav">
+  						<li class="dropdown user user-menu">
+  							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  								<img src="./dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+  								<span class="hidden-xs">Julio </span>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="#" data-toggle="control-sidebar"><i class="fas fa-cogs"></i> Cerrar sesión</a>
+  						</li>
+  					</ul>
+  				</div>
+  			</nav>
+  		</header>
+
+  		<!-- Content Wrapper. Contains page content -->
+  		<div class="content-wrapper">
+  			<!-- Content Header (Page header) -->
+  			<section class="content-header">
+  				<h1>
+  					Resumen de consumo
+  					<small></small>
+  				</h1>
+  			</section>
+
+  			<!-- Main content -->
+  			<section class="content">
+
+
+  				<div class="row">
+  					<div class="col-md-12">
+
+
+  						<div class="box box-primary">
+
+  							<div class="box-header with-border">
+  								<i class="fa fa-bar-chart-o"></i>
+
+  								<h3 class="box-title">Corriente IRMS Registrado [I]</h3>
+
+  								<div class="box-tools pull-left ">
+  									<div class="col-md-6">
+	  									<div class="box box-primary ">
+	  										<button id="btnRefresh" type="button" class="btn btn-xs btn-default">Get Data</button>
+	  									</div>
+	  								</div>	
+	  								<div class="col-md-6">
+	  									<div class="box box-primary ">
+	  										<button id="btnSend" type="button" class="btn btn-xs btn-default">Get Send</button>
+	  									</div>
+	  								</div>	
+  								</div>
+
+  							</div>
+
+  							<div class="box box-primary">
+
+  								<div class="box-body">
+	  								
+	  								<div class="row">
+	  									<div class="col-md-6">
+	  										<div class="box box-primary ">
+	  											<div class="box box-solid box-primary">
+	  												<div class="box-body">
+				  										<div class="form-froup">
+				  											<label >Id de dispositivo :</label>
+				  											<input class="form-control" id="idDevice" type="text" name=""  placeholder="Id Dispositivo">
+			  											</div>
+			  										</div>
+		  										</div>
+	  										</div>
+	  									</div>
+	  								</div>
+
+	  								<div class="row">
+										<div class="col-md-6">
+											<div class="box box-info">
+												<div class="box box-solid box-info">
+													<div class="box-body">
+														<div class="form-froup">
+															<label >Fecha inicial :</label>
+															<input class="form-control" id="fmin" type="date" name="">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="box box-info">
+												<div class="box box-solid box-info">
+													<div class="box-body">
+														<div class="form-froup">
+															<label >Hora inicial (Formato 24 Hrs) :</label>
+															<input class="form-control" id="tmin" type="text" name="" placeholder="HH:mm">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+	  								</div>
+
+	  								<div class="row">
+	  									<div class="col-md-6">
+	  										<div class="box box-info">
+												<div class="box box-solid box-info">
+													<div class="box-body">
+	  													<div class="form-froup">
+	  														<label >Fecha final :</label>
+	  														<input class="form-control" id="fmax" type="date" name="" >
+	  													</div>
+	  												</div>
+												</div>
+											</div>
+	  									</div>
+	  									<div class="col-md-6">
+	  										<div class="box box-info">
+												<div class="box box-solid box-info">
+													<div class="box-body">
+	  													<div class="form-froup">
+	  														<label >Hora final (Formato 24 Hrs) :</label>
+	  														<input class="form-control" id="tmax" type="text" name="" placeholder="HH:mm">
+	  													</div>
+	  												</div>
+												</div>
+											</div>
+	  									</div>
+	  								</div>
+
+									<br>
+
+									<h3 class="box-title">Grafica Historial</h3>
+
+	  								<div id="interactive" style="height: 300px;"></div>
+  								</div>
+
+  								<div class="box-body">
+
+  									<br>
+
+  									<h3 class="box-title">Grafica en tiempo real</h3>
+
+	  								<div id="interactive_update" style="height: 300px;"></div>
+
+								</div>
+
+							</div>
+  							<!-- /.box-body-->
+  						</div>
+  						<!-- /.box -->
+
+  					</div>
+
+  					<!-- /.col -->
+  				</div>
+  				<!-- /.row -->
+
+  				<div class="row">
+  					<div class="col-md-6">
+  						<!-- Line chart -->
+
+  						<!-- /.box -->
+
+  						<!-- Area chart -->
+
+  						<!-- /.box -->
+
+  					</div>
+  					<!-- /.col -->
+
+  					<div class="col-md-6">
+  						<!-- Bar chart -->
+  						
+  					</div>
+  					<!-- /.col -->
+  				</div>
+  				<!-- /.row -->
+  			</section>
+  			<!-- /.content -->
+
+  		</div>
+  		<!-- /.content-wrapper -->
+  		<footer class="main-footer">
+  			<div class="pull-right hidden-xs">
+  				<b>Version</b> 2.4.0
+  			</div>
+  			<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+  			reserved.
+  		</footer>
+
+  		<!-- Control Sidebar -->
+  		<aside class="control-sidebar control-sidebar-dark">
+  			<!-- Create the tabs -->
+  			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+  				<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+  				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+  			</ul>
+  			<!-- Tab panes -->
+  			<div class="tab-content">
+  				<!-- Home tab content -->
+  				<div class="tab-pane" id="control-sidebar-home-tab">
+  					<h3 class="control-sidebar-heading">Recent Activity</h3>
+  					<ul class="control-sidebar-menu">
+  						<li>
+  							<a href="javascript:void(0)">
+  								<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+  								<div class="menu-info">
+  									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+  									<p>Will be 23 on April 24th</p>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<i class="menu-icon fa fa-user bg-yellow"></i>
+
+  								<div class="menu-info">
+  									<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+  									<p>New phone +1(800)555-1234</p>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+  								<div class="menu-info">
+  									<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+  									<p>nora@example.com</p>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+  								<div class="menu-info">
+  									<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+  									<p>Execution time 5 seconds</p>
+  								</div>
+  							</a>
+  						</li>
+  					</ul>
+  					<!-- /.control-sidebar-menu -->
+
+  					<h3 class="control-sidebar-heading">Tasks Progress</h3>
+  					<ul class="control-sidebar-menu">
+  						<li>
+  							<a href="javascript:void(0)">
+  								<h4 class="control-sidebar-subheading">
+  									Custom Template Design
+  									<span class="label label-danger pull-right">70%</span>
+  								</h4>
+
+  								<div class="progress progress-xxs">
+  									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<h4 class="control-sidebar-subheading">
+  									Update Resume
+  									<span class="label label-success pull-right">95%</span>
+  								</h4>
+
+  								<div class="progress progress-xxs">
+  									<div class="progress-bar progress-bar-success" style="width: 95%"></div>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<h4 class="control-sidebar-subheading">
+  									Laravel Integration
+  									<span class="label label-warning pull-right">50%</span>
+  								</h4>
+
+  								<div class="progress progress-xxs">
+  									<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+  								</div>
+  							</a>
+  						</li>
+  						<li>
+  							<a href="javascript:void(0)">
+  								<h4 class="control-sidebar-subheading">
+  									Back End Framework
+  									<span class="label label-primary pull-right">68%</span>
+  								</h4>
+
+  								<div class="progress progress-xxs">
+  									<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+  								</div>
+  							</a>
+  						</li>
+  					</ul>
+  					<!-- /.control-sidebar-menu -->
+
+  				</div>
+  				<!-- /.tab-pane -->
+  				<!-- Stats tab content -->
+  				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+  				<!-- /.tab-pane -->
+  				<!-- Settings tab content -->
+  				<div class="tab-pane" id="control-sidebar-settings-tab">
+  					<form method="post">
+  						<h3 class="control-sidebar-heading">General Settings</h3>
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Report panel usage
+  								<input type="checkbox" class="pull-right" checked>
+  							</label>
+
+  							<p>
+  								Some information about this general settings option
+  							</p>
+  						</div>
+  						<!-- /.form-group -->
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Allow mail redirect
+  								<input type="checkbox" class="pull-right" checked>
+  							</label>
+
+  							<p>
+  								Other sets of options are available
+  							</p>
+  						</div>
+  						<!-- /.form-group -->
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Expose author name in posts
+  								<input type="checkbox" class="pull-right" checked>
+  							</label>
+
+  							<p>
+  								Allow the user to show his name in blog posts
+  							</p>
+  						</div>
+  						<!-- /.form-group -->
+
+  						<h3 class="control-sidebar-heading">Chat Settings</h3>
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Show me as online
+  								<input type="checkbox" class="pull-right" checked>
+  							</label>
+  						</div>
+  						<!-- /.form-group -->
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Turn off notifications
+  								<input type="checkbox" class="pull-right">
+  							</label>
+  						</div>
+  						<!-- /.form-group -->
+
+  						<div class="form-group">
+  							<label class="control-sidebar-subheading">
+  								Delete chat history
+  								<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+  							</label>
+  						</div>
+  						<!-- /.form-group -->
+  					</form>
+  				</div>
+  				<!-- /.tab-pane -->
+  			</div>
+  		</aside>
+  		<!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+  	immediately after the control sidebar -->
+  	<div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 3 -->
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="./bower_components/bootstrap/di./bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="./bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="./di./adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="./di./demo.js"></script>
+  <!-- FLOT CHARTS -->
+  <script src="./bower_components/Flot/jquery.flot.js"></script>
+  <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+  <script src="./bower_components/Flot/jquery.flot.resize.js"></script>
+  <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+  <script src="./bower_components/Flot/jquery.flot.pie.js"></script>
+  <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+  <script src="./bower_components/Flot/jquery.flot.categories.js"></script>
+  <!-- Page script -->
+  <script src="./bower_components/Flot/jquery.flot.axislabels.js"></script>
+  <!-- label axes -->
+
+  <script>
+
+
+  	$(function () {
+  		
+
+  		var irms; 
+  		$( "#btnRefresh" ).click(function() {
+	  		//alert("HELLO");
+	  		getData(); 
+	  	})
+
+	  	$( "#btnSend" ).click(function() {
+	  		//alert("HELLO");
+	  		updateTotal(); 
+	  	})
+
+
+
+
+    /*
+     * Flot Interactive Chart
+     * -----------------------
+     */
+
+     //https://www.labmovilidad.unam.mx/api/trackUn/ReadSensorData?idTrack=90
+    // We use an inline data source in the example, usually data would
+    // be fetched from a serverrl
+    var data = [], totalPoints = 100
+    //var lastDate = Date.now();
+    //var fMin = '2018-10-16';
+    function getData() {
+
+    	var url = 'http://0.0.0.0:5000/api/consult?';
+
+    	var id = document.getElementById("idDevice").value;
+    	//alert(id);
+
+    	var fmin = document.getElementById("fmin").value;
+    	//alert(fmin);
+
+    	var ftmin = document.getElementById("tmin").value;
+    	//alert(ftmin);
+
+    	var fmax = document.getElementById("fmax").value;
+    	//alert(fmax);
+
+    	var ftmax = document.getElementById("tmax").value;
+    	//alert(ftmax);
+
+
+
+    	if ( id ) {
+    		url = url + 'id=' + id;
+    	}
+    	if( fmin ) {
+    		url = url + '&fmin=' + fmin;
+    		if( ftmin ) {
+    			url = url + '%20' + ftmin;
+    		}
+    	}
+
+    	if( fmax ) {
+    		url = url + '&fmax=' + fmax;
+    		if( ftmax ) {
+    			url = url + '%20' + ftmax;
+    		}
+    	}
+    	
+
+    	alert(url);
+
+    	console.log("Hi")
+    	$.ajax({
+    		type: "GET",
+    		url: url,
+    		data: "check",
+    		timeout: 10000,
+    		success: function(data){
+    			alert("HELLO");
+    			console.log("data",data);
+    			console.log('IRMS:', data.results[1].irms);
+
+    			//irms = data; 
+
+    			var plotIRMS = []; 
+  				var i = 0; 
+  				data.results.forEach( function(value, idx) {
+  				if( idx % 5 === 0 ){
+  					plotIRMS.push( [ idx, value.irms ] );
+  				}
+  			});
+
+  			console.log('irms', plotIRMS);
+  			interactive_plot.setData( [plotIRMS]  );
+  			interactive_plot.setupGrid();
+  			interactive_plot.draw();
+
+
+    			//setTimeout( getData, 1000 );
+    		},
+    		error: function(xhr, status, error){
+    			alert("ERROR");
+    			console.log("status", status);
+    			console.log("error",error);    		
+    		}
+
+    	});
+    	console.log('bye');
+    }
+
+    function getRandomData() {
+
+    	if (data.length > 0)
+    		data = data.slice(1)
+
+      // Do a random walk
+      while (data.length < totalPoints) {
+
+      	var prev = data.length > 0 ? data[data.length - 1] : 50,
+      	y    = prev + Math.random() * 10 - 5
+
+      	if (y < 0) {
+      		y = 0
+      	} else if (y > 100) {
+      		y = 100
+      	}
+
+      	data.push(y)
+      }
+
+      // Zip the generated y values with the x values
+      var res = []
+      for (var i = 0; i < data.length; ++i) {
+      	res.push([i, data[i]])
+      }
+
+      return res
+  }
+
+  var interactive_plot = $.plot('#interactive', [], {
+  	grid  : {
+  		borderColor: '#f3f3f3',
+  		borderWidth: 1,
+  		tickColor  : '#f3f3f3'
+  	},
+  	series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color     : '#1FF2CF'
+	},
+    lines : {
+        fill : true, //Converts the line chart to area chart
+        color: '#1FF2CF'
+    },
+    yaxis : {
+    	show: true,
+    	position: "left",
+    	//ticks: [0.0, 10.0]
+
+    },
+    xaxis : {
+    	show: false
+    },
+    axisLabels: {
+            show: true
+        },
+        xaxes: [{
+        	position:'bottom',
+            axisLabel: 'Tiempo',
+        }],
+        yaxes: [{
+            position: 'left',
+            axisLabel: 'Consumo de Corriente [A]',
+        }]
+});
+
+  var interactive_plot_update = $.plot('#interactive_update', [], {
+  	grid  : {
+  		borderColor: '#f3f3f3',
+  		borderWidth: 1,
+  		tickColor  : '#f3f3f3'
+  	},
+  	series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color     : '#1FF2CF'
+	},
+    lines : {
+        fill : true, //Converts the line chart to area chart
+        color: '#1FF2CF'
+    },
+    yaxis : {
+    	show: true,
+    	position: "left",
+    	ticks: [0.0, 10.0]
+
+    },
+    xaxis : {
+    	show: false
+    },
+    axisLabels: {
+            show: true
+        },
+        xaxes: [{
+        	position:'bottom',
+            axisLabel: 'Tiempo',
+        }],
+        yaxes: [{
+            position: 'left',
+            axisLabel: 'Consumo de Corriente [A]',
+        }]
+});
+
+
+  function updateTotal() {
+
+  	var url = 'http://0.0.0.0:5000/api/consult?';
+
+  	var id = document.getElementById("idDevice").value;
+
+  	if ( id ) {
+    		url = url + 'id=' + id;
+    }
+
+  	url = url + '&fmin=' + '2019-05-14%2015:02:49';
+
+  	console.log("Get")
+  	$.ajax({
+  		type: "GET",
+  		url: url,
+  		data: "check",
+  		//timeout: 1000000,
+  		success: function(data){
+  			console.log("data",data);
+  			console.log('IRMS:', data.results[1].irms);
+
+  			var plotIRMS = []; 
+  			var i = 0; 
+  			data.results.forEach( function(value, idx) {
+  				if( idx % 2 === 0 ){
+  					plotIRMS.push( [ idx, value.irms ] );
+  				}
+  			});
+
+  			console.log('irms', plotIRMS);
+  			interactive_plot_update.setData( [plotIRMS]  );
+  			interactive_plot_update.setupGrid();
+  			interactive_plot_update.draw();
+
+    			//setTimeout( getData, 1000 );
+    		},
+		error: function(xhr, status, error){
+    			console.log("status", status);
+    			console.log("error",error);    		
+    		}
+
+    	});
+  	console.log('bye');
+
+  }
+
+  updateTotal();
+
+ // 	var updateInterval = 500 //Fetch data ever x milliseconds
+ //    var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
+ //    function update() {
+
+ //    	interactive_plot.setData([getRandomData()])
+
+	//       // Since the axes don't change, we don't need to call plot.setupGrid()
+	//       interactive_plot.draw()
+	//       if (realtime === 'on')
+	//       	setTimeout(update, updateInterval)
+	// }
+
+ //    //INITIALIZE REALTIME DATA FETCHING
+ //    if (realtime === 'on') {
+
+
+ //    	update()
+ //    }
+
+ //    //REALTIME TOGGLE
+ //    $('#realtime .btn').click(function () {
+ //    	if ($(this).data('toggle') === 'on') {
+ //    		realtime = 'on'
+ //    	}
+ //    	else {
+ //    		realtime = 'off'
+ //    	}
+ //    	update()
+ //    })
+
+
+})
+
+
+  	function labelFormatter(label, series) {
+  		return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+  		+ label
+  		+ '<br>'
+  		+ Math.round(series.percent) + '%</div>'
+  	}
+  </script>
+</body>
+</html>

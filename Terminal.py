@@ -22,7 +22,7 @@ def getMAC(interface='wlan0'):
   return str[0:17]
 
 def SerialAC():
-  # Abrimos el puerto del arduino a 9600
+  # Abrimos el puerto del arduino a 115200
   PuertoSerie = serial.Serial('/dev/ttyUSB0', 115200)
   idPi = getMAC('wlan0')
   data = []

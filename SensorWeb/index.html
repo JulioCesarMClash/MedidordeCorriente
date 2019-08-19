@@ -92,7 +92,7 @@
   								<div class="box-tools pull-left ">
   									<div class="col-md-6">
 	  									<div class="box box-primary ">
-	  										<button id="btnRefresh" type="button" class="btn btn-xs btn-default">Get Data</button>
+	  										<button id="btnRefresh" type="button" class="btn btn-xs btn-default">Get History</button>
 	  									</div>
 	  								</div>	
 	  								<div class="col-md-6">
@@ -107,7 +107,8 @@
   							<div class="box box-primary">
 
   								<div class="box-body">
-	  								
+	  								<p><i>Introduzca los datos que se le solicitan:</i></p>
+	  								<br>
 	  								<div class="row">
 	  									<div class="col-md-6">
 	  										<div class="box box-primary ">
@@ -141,8 +142,56 @@
 												<div class="box box-solid box-info">
 													<div class="box-body">
 														<div class="form-froup">
-															<label >Hora inicial (Formato 24 Hrs) :</label>
-															<input class="form-control" id="tmin" type="text" name="" placeholder="HH:mm">
+															<label >Hora inicial (Formato 24 Hrs) </label>
+															<br>
+															<form>
+																<label >Hora :</label>
+																<select id="hoursfmin">
+																	<option value="00">00</option>
+																	<option value="01">01</option>
+																	<option value="02">02</option>
+																	<option value="03">03</option>
+																	<option value="04">04</option>
+																	<option value="05">05</option>
+																	<option value="06">06</option>
+																	<option value="07">07</option>
+																	<option value="08">08</option>
+																	<option value="09">09</option>
+																	<option value="10">10</option>
+																	<option value="11">11</option>
+																	<option value="12">12</option>
+																	<option value="13">13</option>
+																	<option value="14">14</option>
+																	<option value="15">15</option>
+																	<option value="16">16</option>
+																	<option value="17">17</option>
+																	<option value="18">18</option>
+																	<option value="19">19</option>
+																	<option value="20">20</option>
+																	<option value="21">21</option>
+																	<option value="22">22</option>
+																	<option value="23">23</option>
+																</select>
+															<br>
+															</form>
+															<form>
+																<label >Minuto :</label>
+																<select id="minutesfmin">
+																	<option value="00">00</option>
+																	<option value="05">05</option>
+																	<option value="10">10</option>
+																	<option value="15">15</option>
+																	<option value="20">20</option>
+																	<option value="25">25</option>
+																	<option value="30">30</option>
+																	<option value="35">35</option>
+																	<option value="40">40</option>
+																	<option value="45">45</option>
+																	<option value="50">50</option>
+																	<option value="55">55</option>
+																</select>
+															</form>
+														<br>
 														</div>
 													</div>
 												</div>
@@ -168,8 +217,55 @@
 												<div class="box box-solid box-info">
 													<div class="box-body">
 	  													<div class="form-froup">
-	  														<label >Hora final (Formato 24 Hrs) :</label>
-	  														<input class="form-control" id="tmax" type="text" name="" placeholder="HH:mm">
+	  														<label >Hora final (Formato 24 Hrs) </label>
+	  														<form>
+																<label >Hora :</label>
+																<select id="hoursfmax">
+																	<option value="00">00</option>
+																	<option value="01">01</option>
+																	<option value="02">02</option>
+																	<option value="03">03</option>
+																	<option value="04">04</option>
+																	<option value="05">05</option>
+																	<option value="06">06</option>
+																	<option value="07">07</option>
+																	<option value="08">08</option>
+																	<option value="09">09</option>
+																	<option value="10">10</option>
+																	<option value="11">11</option>
+																	<option value="12">12</option>
+																	<option value="13">13</option>
+																	<option value="14">14</option>
+																	<option value="15">15</option>
+																	<option value="16">16</option>
+																	<option value="17">17</option>
+																	<option value="18">18</option>
+																	<option value="19">19</option>
+																	<option value="20">20</option>
+																	<option value="21">21</option>
+																	<option value="22">22</option>
+																	<option value="23">23</option>
+																</select>
+															<br>
+															</form>
+															<form>
+																<label >Minuto :</label>
+																<select id="minutesfmax">
+																	<option value="00">00</option>
+																	<option value="05">05</option>
+																	<option value="10">10</option>
+																	<option value="15">15</option>
+																	<option value="20">20</option>
+																	<option value="25">25</option>
+																	<option value="30">30</option>
+																	<option value="35">35</option>
+																	<option value="40">40</option>
+																	<option value="45">45</option>
+																	<option value="50">50</option>
+																	<option value="55">55</option>
+																</select>
+															</form>
+														<br>
 	  													</div>
 	  												</div>
 												</div>
@@ -177,18 +273,57 @@
 	  									</div>
 	  								</div>
 
+
+
 									<br>
 
 									<h3 class="box-title">Grafica Historial</h3>
 
 	  								<div id="interactive" style="height: 300px;"></div>
+
+	  								<br>
+
+	  								<br>
+
+	  								<div class="box-body">
+		  								<div class="row">
+		  									<div class="col-md-6">
+		  										<div class="box box-primary ">
+		  											<div class="box box-solid box-primary">
+		  												<div class="box-body">
+					  										<div class="form-froup">
+					  											<label >Precio Nominal segun CFE :</label>
+					  											<input class="form-control" id="tarifaCFE" type="text" name=""  placeholder="Precio">
+				  											</div>
+				  										</div>
+			  										</div>
+		  										</div>
+		  									</div>
+		  									<div class="col-md-6">
+  												<div class="box box-primary ">
+		  											<div class="box box-solid box-primary">
+		  												<div class="box-body">
+					  										<div class="form-froup">
+																<button id="btnCalTarifa" onclick="" type="button" class="btn btn-xs btn-default">Calcular Tarifa</button>
+																<br>
+																<br>
+																<p id = "demo"> Resultado de la tarifa </p>
+																<br>
+																<p><i>Si necesita consultar la tarifa correspondiente al periodo, consulte <a href="https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/Tarifa1.aspx" target="_blank">aqui</a> la página de CFE</i></p>
+															</div>
+														</div>
+	  												</div>
+	  											</div>
+	  										</div>	
+		  								</div>
+		  							</div>
   								</div>
 
   								<div class="box-body">
 
   									<br>
 
-  									<h3 class="box-title">Grafica en tiempo real</h3>
+  									<h3 class="box-title">Grafica RealTime</h3>
 
 	  								<div id="interactive_update" style="height: 300px;"></div>
 
@@ -436,14 +571,8 @@
 
   <!-- jQuery 3 -->
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="./bower_components/bootstrap/di./bootstrap.min.js"></script>
   <!-- FastClick -->
   <script src="./bower_components/fastclick/lib/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="./di./adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="./di./demo.js"></script>
   <!-- FLOT CHARTS -->
   <script src="./bower_components/Flot/jquery.flot.js"></script>
   <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
@@ -463,31 +592,165 @@
   		
 
   		var irms; 
+  		var plotIRMS = [];
+  		var FMIN;
+  		var FMAX;
+  		var Update_FMIN;
+  		var Update_FMAX;
+
+  		var FTMINH;
+  		var FTMAXH;
+
+  		var flag_state = false;
+
+  		
+
+  		function setFunctionMin(){
+  			FTMINH = document.getElementById("hoursfmin").value + ":" + document.getElementById("minutesfmin").value;
+  			alert(FTMINH);
+  		}
+
+  		
+  		function setFunctionMax(){
+  			FTMAXH = document.getElementById("hoursfmax").value + ":" + document.getElementById("minutesfmax").value;
+  			alert(FTMAXH);
+  		}
+
   		$( "#btnRefresh" ).click(function() {
 	  		//alert("HELLO");
-	  		getData(); 
+	  		setFunctionMin();
+	  		setFunctionMax();
+	  		getHistory();
+	  		//getData(); 
 	  	})
 
 	  	$( "#btnSend" ).click(function() {
 	  		//alert("HELLO");
-	  		updateTotal(); 
+	  		if (flag_state === false) {
+	  			flag_state = true;
+	  			alert(flag_state);
+	  			//return;
+	  		} else {
+	  			flag_state = false;
+	  			alert(flag_state);
+	  		}
+
+
+	  		//updateTotal(); 
 	  	})
 
+	  	$( "#btnCalTarifa" ).click(function() {
+	  		var suma = 0;
+	  		var potencia = 0.0; 
+	  		var wattHours = 0.0;
+	  		var costoConsumo = 0.0;
+	  		var voltaje = 127.0;
 
 
+	  		if (FMIN && FMAX){
+	  			var costo = Number(document.getElementById("tarifaCFE").value);
+	  			var dateMin = new Date(FMIN);
+	  			//console.log( 'dateMin', dateMin)
+	  			var dateMax = new Date(FMAX);
+	  			//console.log( 'dateMin', dateMax)
+
+		  		var datePromedio = dateMax - dateMin;
+		  		var datePromedioTotal = datePromedio/3600000;
+		  		console.log( 'dateProm', datePromedioTotal)
+		  		//console.log( 'plotIRMS', plotIRMS)
+		  		plotIRMS.forEach( x => {
+		  			
+		  			var iRMS = x[1]
+					//console.log('iRms', iRMS);
+
+
+		  			if (iRMS !== NaN){
+	  					suma = suma + iRMS;
+	  					//console.log(suma);
+	  				}
+	  			});
+
+	  			potencia = suma * voltaje;
+	  			var kW = potencia / 1000; 
+	  			wattHours = kW / datePromedioTotal;
+	  			console.log('potencia : ', potencia);
+	  			console.log('wattHora : ', wattHours);
+
+	  			costoConsumo = wattHours * costo;
+
+	  			document.getElementById("demo").innerHTML = costoConsumo.toString();
+
+  			}
+	  		else{
+
+	  			alert("Usted no ha realizado una busqueda de historial");
+	  			document.getElementById("demo").innerHTML = "Error";
+	  			return;
+
+	  		}
+
+
+  			
+
+  			
+
+
+	  	})
+
+	  	delay = 2000;
+		setInterval(() => {
+
+    	currentDate = Date.now();
+    	fetch = new Date(currentDate - delay);
+
+    	Update_FMAX =
+	        fetch.getFullYear().toString().padStart(2, '0')
+	        + '-' +
+	        (fetch.getMonth() +1 ).toString().padStart(2, '0')
+	        + '-' +
+	        fetch.getDate().toString().padStart(2, '0') 
+	        + '%20' +
+	        fetch.getHours().toString().padStart(2, '0')
+	        + ':' +
+	        fetch.getMinutes().toString().padStart(2, '0')
+	        + ':' +
+	        fetch.getSeconds().toString().padStart(2, '0')
+	        ;
+
+        Update_FMIN =
+	        fetch.getFullYear().toString().padStart(2, '0')
+	        + '-' +
+	        (fetch.getMonth() +1 ).toString().padStart(2, '0')
+	        + '-' +
+	        fetch.getDate().toString().padStart(2, '0') 
+	        + '%20' +
+	        fetch.getHours().toString().padStart(2, '0')
+	        + ':' +
+	        (fetch.getMinutes()-3).toString().padStart(2, '0')
+	        + ':' +
+	        fetch.getSeconds().toString().padStart(2, '0')
+	        ;
+
+    		console.log('fetchInitTime', Update_FMIN);
+    		console.log('fetchEndTime', Update_FMAX);
+    		// pedir con ajax los datos con fecha mayor a dateString
+    		updateTotal()
+
+		}, delay)
+
+
+
+	
+
+			
 
     /*
      * Flot Interactive Chart
      * -----------------------
      */
 
-     //https://www.labmovilidad.unam.mx/api/trackUn/ReadSensorData?idTrack=90
-    // We use an inline data source in the example, usually data would
-    // be fetched from a serverrl
-    var data = [], totalPoints = 100
-    //var lastDate = Date.now();
-    //var fMin = '2018-10-16';
-    function getData() {
+    
+    function getHistory() {
 
     	var url = 'http://0.0.0.0:5000/api/consult?';
 
@@ -497,54 +760,57 @@
     	var fmin = document.getElementById("fmin").value;
     	//alert(fmin);
 
-    	var ftmin = document.getElementById("tmin").value;
+    	//var ftmin = document.getElementById("tmin").value;
     	//alert(ftmin);
 
     	var fmax = document.getElementById("fmax").value;
     	//alert(fmax);
 
-    	var ftmax = document.getElementById("tmax").value;
+    	//var ftmax = document.getElementById("tmax").value;
     	//alert(ftmax);
 
 
+
+        FMIN = fmin + " " + FTMINH;
+        //console.log(typeof(FMIN))
+        FMAX = fmax + " " + FTMAXH;
+        //console.log(typeof(FMAX))
 
     	if ( id ) {
     		url = url + 'id=' + id;
     	}
     	if( fmin ) {
-    		url = url + '&fmin=' + fmin;
-    		if( ftmin ) {
-    			url = url + '%20' + ftmin;
-    		}
+    		url = url + '&fmin=' + FMIN;
     	}
 
     	if( fmax ) {
-    		url = url + '&fmax=' + fmax;
-    		if( ftmax ) {
-    			url = url + '%20' + ftmax;
-    		}
+    		url = url + '&fmax=' + FMAX;
     	}
     	
 
     	alert(url);
 
-    	console.log("Hi")
+    	//console.log("Hi")
     	$.ajax({
     		type: "GET",
     		url: url,
     		data: "check",
-    		timeout: 10000,
+    		timeout: 30000,
     		success: function(data){
     			alert("HELLO");
     			console.log("data",data);
-    			console.log('IRMS:', data.results[1].irms);
+    			//console.log('IRMS:', data.results[1].irms);
+
+    			if (data.results.length === 0){
+    				alert("Fuera de rango de fechas");
+    			}
 
     			//irms = data; 
 
-    			var plotIRMS = []; 
+    		    plotIRMS = []; 
   				var i = 0; 
   				data.results.forEach( function(value, idx) {
-  				if( idx % 5 === 0 ){
+  				if( idx % 2 === 0 ){
   					plotIRMS.push( [ idx, value.irms ] );
   				}
   			});
@@ -564,37 +830,10 @@
     		}
 
     	});
-    	console.log('bye');
+    	//console.log('bye');
     }
 
-    function getRandomData() {
-
-    	if (data.length > 0)
-    		data = data.slice(1)
-
-      // Do a random walk
-      while (data.length < totalPoints) {
-
-      	var prev = data.length > 0 ? data[data.length - 1] : 50,
-      	y    = prev + Math.random() * 10 - 5
-
-      	if (y < 0) {
-      		y = 0
-      	} else if (y > 100) {
-      		y = 100
-      	}
-
-      	data.push(y)
-      }
-
-      // Zip the generated y values with the x values
-      var res = []
-      for (var i = 0; i < data.length; ++i) {
-      	res.push([i, data[i]])
-      }
-
-      return res
-  }
+  
 
   var interactive_plot = $.plot('#interactive', [], {
   	grid  : {
@@ -613,7 +852,7 @@
     yaxis : {
     	show: true,
     	position: "left",
-    	//ticks: [0.0, 10.0]
+    	ticks: [0.0, 10.0]
 
     },
     xaxis : {
@@ -669,84 +908,62 @@
 });
 
 
-  function updateTotal() {
+	function updateTotal() {
 
-  	var url = 'http://0.0.0.0:5000/api/consult?';
+		if(flag_state === true ){
 
-  	var id = document.getElementById("idDevice").value;
+			console.log('activated');
 
-  	if ( id ) {
-    		url = url + 'id=' + id;
+		  	var url = 'http://0.0.0.0:5000/api/consult?';
+
+		  	var id = document.getElementById("idDevice").value;
+
+		  	if ( !id ) {
+		    	alert( "Falta el Id del dispositivo")
+		    	return; 
+		    }
+
+			url = url + 'id=' + id;
+
+		  	url = url + '&fmin=' + Update_FMIN + '&fmax=' + Update_FMAX;
+
+		  	console.log("Get")
+		  	$.ajax({
+		  		type: "GET",
+		  		url: url,
+		  		data: "check",
+		  		success: function(data){
+		  			console.log("data",data);
+		  			console.log('IRMS:', data.results[1].irms);
+
+		  			plotIRMS = []; 
+		  			var i = 0; 
+		  			data.results.forEach( function(value, idx) {
+		  				if( idx % 2 === 0 ){
+		  					plotIRMS.push( [ idx, value.irms ] );
+		  				}
+		  			});
+
+		  			console.log('irms', plotIRMS);
+		  			interactive_plot_update.setData( [plotIRMS]  );
+		  			interactive_plot_update.setupGrid();
+		  			interactive_plot_update.draw();
+
+		    			//setTimeout( getData, 1000 );
+		    		},
+				error: function(xhr, status, error){
+		    			console.log("status", status);
+		    			console.log("error",error);    		
+		    		}
+
+		    	});
+		  	console.log('bye');
+		}
+		else{
+			console.log('stopped');
+		}
+
     }
-
-  	url = url + '&fmin=' + '2019-05-14%2015:02:49';
-
-  	console.log("Get")
-  	$.ajax({
-  		type: "GET",
-  		url: url,
-  		data: "check",
-  		//timeout: 1000000,
-  		success: function(data){
-  			console.log("data",data);
-  			console.log('IRMS:', data.results[1].irms);
-
-  			var plotIRMS = []; 
-  			var i = 0; 
-  			data.results.forEach( function(value, idx) {
-  				if( idx % 2 === 0 ){
-  					plotIRMS.push( [ idx, value.irms ] );
-  				}
-  			});
-
-  			console.log('irms', plotIRMS);
-  			interactive_plot_update.setData( [plotIRMS]  );
-  			interactive_plot_update.setupGrid();
-  			interactive_plot_update.draw();
-
-    			//setTimeout( getData, 1000 );
-    		},
-		error: function(xhr, status, error){
-    			console.log("status", status);
-    			console.log("error",error);    		
-    		}
-
-    	});
-  	console.log('bye');
-
-  }
-
-  updateTotal();
-
- // 	var updateInterval = 500 //Fetch data ever x milliseconds
- //    var realtime       = 'on' //If == to on then fetch data every x seconds. else stop fetching
- //    function update() {
-
- //    	interactive_plot.setData([getRandomData()])
-
-	//       // Since the axes don't change, we don't need to call plot.setupGrid()
-	//       interactive_plot.draw()
-	//       if (realtime === 'on')
-	//       	setTimeout(update, updateInterval)
-	// }
-
- //    //INITIALIZE REALTIME DATA FETCHING
- //    if (realtime === 'on') {
-
-
- //    	update()
- //    }
-
- //    //REALTIME TOGGLE
- //    $('#realtime .btn').click(function () {
- //    	if ($(this).data('toggle') === 'on') {
- //    		realtime = 'on'
- //    	}
- //    	else {
- //    		realtime = 'off'
- //    	}
- //    	update()
- //    })
 
 
 })

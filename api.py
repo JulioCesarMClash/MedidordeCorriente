@@ -4,7 +4,7 @@ from flask import request, jsonify
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 
-
+import time
 
 
 app = flask.Flask(__name__)
@@ -46,7 +46,9 @@ def api_in():
 
 @app.route('/api/consult', methods=['GET'])
 def api_consult():
-	id_search = request.args.get('id')
+	
+	maxLength = 1000
+ 	id_search = request.args.get('id')
 	dateMin = request.args.get('fmin', default = "2018-10-12 07:00:00", type = str)
 	dateMax = request.args.get('fmax', default = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), type = str)
 	
@@ -56,17 +58,33 @@ def api_consult():
 		return response
 	else:
 		query_condition ={"$and":[{"id":id_search}, {"fecha":{"$gte":dateMin}}, {"fecha":{"$lte":dateMax}}]}
-		find = mydb.sensors.find(query_condition)
+		find = mydb.sensors.find(query_condition, {"_id":False})
 
 	try:
-		listdoc = [] 
-		for document in find:
-			document.pop("_id")
-			listdoc.append(document)
+		t = time.time()
+		#listdoc = [] 
+		#for document in find:
+		#	#document.pop("_id")
+		#	listdoc.append(document)
 		
+		listdoc = list( find ) 
+
+	
+		print( "time1", time.time() - t )
+			
 		#print listdoc
-		response = jsonify(results=listdoc)
-		response.status_code = 200
+
+		t = time.time()
+		step = len(listdoc) // maxLength
+		print( "time2", time.time() - t )
+
+		if(step < 1):
+			response = jsonify(results=listdoc)
+			response.status_code = 200
+		else:
+			subListdoc = listdoc [0::step]
+			response = jsonify(results=subListdoc)
+			response.status_code = 200 
 		return response
 
 	except Exception as e:

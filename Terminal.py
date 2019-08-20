@@ -56,7 +56,7 @@ def GeneraArchivo(archivo, numfile):
 def EnvioArchivo():
   path = '/home/pi/Desktop/Muestreos'
   #192.169.9.137 ip lab #######192.168.1.68 ip casa 
-  url = 'https://labmovilidad.unam.mx/tesismonitor/api/test/data'
+  url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}
   while True:
     if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 1:

@@ -81,9 +81,9 @@ def EnvioArchivo():
       if response.status_code == requests.codes.ok:
       	print ("Delete")
 	BorrarArchivo()
-    else:
-      print ("aun no")
-      time.sleep(0.5)
+      else:
+      	print ("aun no")
+      	time.sleep(0.5)
 
 
 def BorrarArchivo():

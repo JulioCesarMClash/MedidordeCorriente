@@ -101,9 +101,9 @@ def BorrarArchivo():
                     #print ("Removing %s" % (os.path.join(r,files)))
                     os.remove(os.path.join(r,files))
                 except Exception,e:
-                    #print (e)
-                #else:
-                    #print ("%s removed" % (os.path.join(r,files)))
+                    print (e)
+                else:
+                    print ("%s removed" % (os.path.join(r,files)))
 
 
 def main ():
@@ -119,7 +119,7 @@ def main ():
         time.sleep(.3)
         x += 1
     except KeyboardInterrupt:
-        print ("Bye")
+        #print ("Bye")
         sys.exit()
 
 if __name__ == '__main__':

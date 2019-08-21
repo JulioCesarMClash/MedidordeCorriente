@@ -59,7 +59,7 @@ def EnvioArchivo():
   url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}
   while True:
-    if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 10:
+     if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 2:
       listFiles = []
       listDir = os.walk(path)  
       for root, dirs, files in listDir:

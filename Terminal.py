@@ -49,17 +49,17 @@ def SerialAC():
 
 def GeneraArchivo(archivo, numfile):
   nombre = "archivo" + str(numfile)     
-  with open ("/home/pi/filesIRMS/"+str(nombre)+".json","w") as json_file:
+  with open ("/home/pi/Desktop/Muestreos/"+str(nombre)+".json","w") as json_file:
     json.dump(archivo,json_file)
     print ("Archivo Generado")
 
 def EnvioArchivo():
-  path = '/home/pi/filesIRMS'
+  path = '/home/pi/Desktop/Muestreos'
   #192.169.9.137 ip lab #######192.168.1.68 ip casa 
   url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}
   while True:
-    if len(glob.glob("/home/pi/filesIRMS/*.json")) == 1:
+    if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 10:
       listFiles = []
       listDir = os.walk(path)  
       for root, dirs, files in listDir:
@@ -89,7 +89,7 @@ def EnvioArchivo():
 def BorrarArchivo():
   print ("borrando...")
   count = 0
-  path = os.path.join("/home/pi/filesIRMS/")
+  path = os.path.join("/home/pi/Desktop/Muestreos/")
   pattern = ".json"
   maxdepth = 1
   cpath=path.count(os.sep) 

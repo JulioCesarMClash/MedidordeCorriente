@@ -38,10 +38,10 @@ def SerialAC():
 	'fecha':fecha
 	})
       # Mostramos el valor leido y eliminamos el salto de linea del final
-    #print ("Valor Arduino: " + sArduino.rstrip('\n'))
+    print ("Valor Arduino: " + sArduino.rstrip('\n'))
     time.sleep(0.010)
     if len(data) > 19:
-	#print (data)
+	print (data)
 	counter = counter + 1
     	GeneraArchivo(data, counter)
     	data[:] = []
@@ -51,7 +51,7 @@ def GeneraArchivo(archivo, numfile):
   nombre = "archivo" + str(numfile)     
   with open ("/home/pi/Desktop/Muestreos/"+str(nombre)+".json","w") as json_file:
     json.dump(archivo,json_file)
-    #print ("Archivo Generado")
+    print ("Archivo Generado")
 
 def EnvioArchivo():
   path = '/home/pi/Desktop/Muestreos'
@@ -59,7 +59,7 @@ def EnvioArchivo():
   url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}
   while True:
-     if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 2:
+     if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 4:
       listFiles = []
       listDir = os.walk(path)  
       for root, dirs, files in listDir:
@@ -75,19 +75,19 @@ def EnvioArchivo():
         response = requests.post(url, data=open(path+'/'+dirSend,'rb'), headers=headers)
         response.status_code
 
-      #print ("Listado final")
-      #print ("longitud de la lista = ", len(listFiles))
+      print ("Listado final")
+      print ("longitud de la lista = ", len(listFiles))
       time.sleep(1)
       if response.status_code == requests.codes.ok:
-      	#print ("Delete")
+      	print ("Delete")
 	BorrarArchivo()
       else:
-      	#print ("aun no")
+      	print ("aun no")
       	time.sleep(0.5)
 
 
 def BorrarArchivo():
-  #print ("borrando...")
+  print ("borrando...")
   count = 0
   path = os.path.join("/home/pi/Desktop/Muestreos/")
   pattern = ".json"
@@ -98,7 +98,7 @@ def BorrarArchivo():
           for files in f:   
             if files.endswith(pattern):
                 try:
-                    #print ("Removing %s" % (os.path.join(r,files)))
+                    print ("Removing %s" % (os.path.join(r,files)))
                     os.remove(os.path.join(r,files))
                 except Exception,e:
                     print (e)
@@ -119,7 +119,7 @@ def main ():
         time.sleep(.3)
         x += 1
     except KeyboardInterrupt:
-        #print ("Bye")
+        print ("Bye")
         sys.exit()
 
 if __name__ == '__main__':

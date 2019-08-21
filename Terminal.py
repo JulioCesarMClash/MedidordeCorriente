@@ -102,7 +102,7 @@ def BorrarArchivo():
                     os.remove(os.path.join(r,files))
                 except Exception,e:
                     #print (e)
-                else:
+                #else:
                     #print ("%s removed" % (os.path.join(r,files)))
 
 

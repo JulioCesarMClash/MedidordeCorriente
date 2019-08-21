@@ -11,7 +11,7 @@ import glob
 import signal
 import sys
 import requests
-import netifaces as ni
+
 
 def getMAC(interface='wlan0'):
   #Return the MAC addres of the specified interface
@@ -56,9 +56,6 @@ def GeneraArchivo(archivo, numfile):
 
 def EnvioArchivo():
   path = '/home/pi/Desktop/Muestreos'
-  ni.ifaddresses('wlan0')
-  ip_address = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
-  print (ip_address)
   #192.168.0.141 ip lab #######192.168.1.68 ip casa 
   url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}

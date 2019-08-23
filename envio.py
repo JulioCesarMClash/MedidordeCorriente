@@ -30,7 +30,7 @@ def EnvioArchivo():
             #listFiles.append(nombreFichero+extension)
 	  if fichero.endswith('.json'):
             listFiles.append(fichero)
-      print (listFiles)
+      #print (listFiles)
 
       for i in listFiles:
         #print (i)
@@ -39,20 +39,20 @@ def EnvioArchivo():
         response = requests.post(url, data=dirSend, headers=headers)
         response.status_code
 
-      print ("Listado final")
-      print ("longitud de la lista = ", len(listFiles))
+      #print ("Listado final")
+      #print ("longitud de la lista = ", len(listFiles))
       time.sleep(1)
       if response.status_code == requests.codes.ok:
-      	print ("Delete")
+      	#print ("Delete")
 	BorrarArchivo()
     else:
-      print ("aun no")
+      #print ("aun no")
       conteo = conteo + 1
       time.sleep(1)
 
 
 def BorrarArchivo():
-  print ("borrando...")
+  #print ("borrando...")
   count = 0
   path = os.path.join("/home/pi/Desktop/Muestreos/")
   pattern = ".json"
@@ -63,12 +63,12 @@ def BorrarArchivo():
           for files in f:   
             if files.endswith(pattern):
                 try:
-                    print ("Removing %s" % (os.path.join(r,files)))
+                    #print ("Removing %s" % (os.path.join(r,files)))
                     os.remove(os.path.join(r,files))
                 except Exception,e:
-                    print (e)
-            else:
-                print ("%s removed" % (os.path.join(r,files)))
+                    #print (e)
+            #else:
+                #print ("%s no removed" % (os.path.join(r,files)))
 
 def main ():
   x = 1

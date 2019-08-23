@@ -27,7 +27,8 @@ def SerialAC():
   PuertoSerie = serial.Serial('/dev/ttyUSB0', 115200)
   idPi = getMAC('wlan0')
   data = []
-  counter = 0
+  global counter
+  #counter = 0
   while True:
     fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
     sArduino = PuertoSerie.readline()
@@ -44,13 +45,15 @@ def SerialAC():
     if len(data) > 19:
 	print (data)
 	counter = counter + 1
-    	GeneraArchivo(data, counter)
+    	GeneraArchivo(data, fecha)
     	data[:] = []
 
 
-def GeneraArchivo(archivo, numfile):
-  nombre = "archivo" + str(numfile)     
-  with open ("/home/pi/Desktop/Muestreos/"+str(nombre)+".json","w") as json_file:
+def GeneraArchivo(archivo, date):
+  #nombre = "archivo" + str(numfile)
+  nombre = "archivo" + str(date)     
+  #with open ("/home/pi/Desktop/Muestreos/"+str(nombre)+".json","w") as json_file:
+  with open ("/home/pi/Desktop/Muestreos/"+nombre+".json","w") as json_file:
     json.dump(archivo,json_file)
     print ("Archivo Generado")
 
@@ -59,21 +62,26 @@ def EnvioArchivo():
   #192.168.0.141 ip lab #######192.168.1.68 ip casa 
   url = 'https://www.labmovilidad.unam.mx/tesismonitor/api/test/data'
   headers = {'Authorization' : '(some auth code)', 'Accept' : 'application/json', 'Content-Type' : 'application/json'}
+  conteo = 0
   while True:
-    if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 5:
+    #if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 5:
+    if conteo >= 10:
       listFiles = []
       listDir = os.walk(path)  
       for root, dirs, files in listDir:
         for fichero in files:
-          (nombreFichero, extension) = os.path.splitext(fichero)
-          if (extension == ".json"):
-            listFiles.append(nombreFichero+extension)
+          #(nombreFichero, extension) = os.path.splitext(fichero)
+          #if (extension == ".json"):
+            #listFiles.append(nombreFichero+extension)
+	  if fichero.endswith('.json'):
+            listFiles.append(fichero)
       print (listFiles)
 
       for i in listFiles:
-        print (i)
-        dirSend = str(i)
-        response = requests.post(url, data=open(path+'/'+dirSend,'rb'), headers=headers)
+        #print (i)
+        #dirSend = str(i)
+	dirSend = open(path+'/'+i, 'rb').read()
+        response = requests.post(url, data=dirSend, headers=headers)
         response.status_code
 
       print ("Listado final")
@@ -84,7 +92,8 @@ def EnvioArchivo():
 	BorrarArchivo()
     else:
       print ("aun no")
-      time.sleep(0.5)
+      conteo = conteo + 1
+      time.sleep(1)
 
 
 def BorrarArchivo():
@@ -103,8 +112,8 @@ def BorrarArchivo():
                     os.remove(os.path.join(r,files))
                 except Exception,e:
                     print (e)
-                else:
-                    print ("%s removed" % (os.path.join(r,files)))
+            else:
+                print ("%s removed" % (os.path.join(r,files)))
 
 
 def main ():

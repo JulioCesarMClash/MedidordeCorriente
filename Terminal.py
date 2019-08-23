@@ -7,7 +7,7 @@ import threading
 import time
 import datetime
 import os
-import glob
+#import glob
 import signal
 import sys
 import requests
@@ -44,7 +44,7 @@ def SerialAC():
     time.sleep(0.010)
     if len(data) > 19:
 	print (data)
-	counter = counter + 1
+	#counter = counter + 1
     	GeneraArchivo(data, fecha)
     	data[:] = []
 
@@ -65,7 +65,7 @@ def EnvioArchivo():
   conteo = 0
   while True:
     #if len(glob.glob("/home/pi/Desktop/Muestreos/*.json")) == 5:
-    if conteo >= 10:
+    if conteo >= 60:
       listFiles = []
       listDir = os.walk(path)  
       for root, dirs, files in listDir:
@@ -90,6 +90,7 @@ def EnvioArchivo():
       if response.status_code == requests.codes.ok:
       	print ("Delete")
 	BorrarArchivo()
+      conteo = 0
     else:
       print ("aun no")
       conteo = conteo + 1
